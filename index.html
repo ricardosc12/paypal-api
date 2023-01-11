@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AbWlHSHRrz9KzrX0tQsqX17etcocjcgPAqHS-KL_wrXP29QyWc3LggaWKsrelJZroGlxGWjgFxQiyPWB&components=buttons,marks&currency=BRL&enable-funding=mercadopago"></script>
+</head>
+<body>
+  
+    
+    <div id="paypal-buttons-container">
+        <div id="paypal-button-container"></div>
+    </div>
+</body>
+
+<script>
+    paypal.Buttons({
+        style: {
+            layout: 'vertical',
+            color:  'silver',
+            shape:  'pill',
+            label:  'paypal'
+        },
+      createOrder: function(data, actions) {
+        // Set up the transaction
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '0.01',
+              currency_code: 'BRL'
+            }
+          }]
+        });
+      },
+      onCancel: function (data) {
+            console.log("Cancelou")
+        }
+    }).render('#paypal-button-container');
+  </script>
+
+</html>
